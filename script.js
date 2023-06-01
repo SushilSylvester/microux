@@ -1,18 +1,29 @@
-import cloudinary from 'cloudinary';
+const cloudinary = require('cloudinary');
 
-// Configure Cloudinary with your credentials
-cloudinary.config({
-  cloud_name: 'Yduldfki6j',
-  api_key: '474577221937364',
-  api_secret: 'NdmEurAKxUGT-W_wuS7OhoYdi8k'
-});
+// Configure Cloudinary
+const cloudName = 'duldfki6j';
+const apiKey = '474577221937364';
+const apiSecret = 'NdmEurAKxUGT-W_wuS7OhoYdi8k';
+const cl = cloudinary.Cloudinary.new({ cloud_name: cloudName, secure: true });
 
-// Now you can use the Cloudinary library in your code
-// For example, to upload an image:
-cloudinary.uploader.upload('path/to/image.jpg', (error, result) => {
+// Get the container element for the image grid
+const imageGrid = document.getElementById('image-grid');
+
+// Fetch the image URLs from Cloudinary and create the image elements
+cl.api.resources({ type: 'upload', max_results: 20 }, (error, result) => {
   if (error) {
-    console.error('Failed to upload image:', error);
+    console.error('Failed to fetch images:', error);
   } else {
-    console.log('Image uploaded:', result.secure_url);
+    result.resources.forEach((resource) => {
+      const imageUrl = resource.secure_url;
+
+      // Create an image element and set the source
+      const image = document.createElement('img');
+      image.src = imageUrl;
+
+      // Append the image to the image grid container
+      imageGrid.appendChild(image);
+    });
   }
 });
+
