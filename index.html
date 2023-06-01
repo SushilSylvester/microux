@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Canvas Example</title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.0/p5.js"></script>
+  <style>
+    body {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        margin: 0;
+      }
+  
+      canvas {
+        border: 1px solid black;
+      }
+  </style>
+</head>
+<body>
+    <body>
+        <!-- <canvas id="myCanvas"></canvas> -->
+    </body>
+    <script>
+        function setup() {
+          createCanvas(710, 400);
+          background(102);
+        }
+    
+        function draw() {
+          stroke(255);
+          if (mouseIsPressed === true) {
+            line(mouseX, mouseY, pmouseX, pmouseY);
+          }
+        }
+      </script> 
+</body>
+</html>
