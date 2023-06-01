@@ -34,6 +34,14 @@
             line(mouseX, mouseY, pmouseX, pmouseY);
           }
         }
+
+        // Disable scrolling
+        document.body.style.overflow = 'hidden';
+
+        // Re-enable scrolling (if needed)
+        function enableScrolling() {
+          document.body.style.overflow = 'auto';
+        }
       </script> 
 </body>
 </html>
