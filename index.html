@@ -43,22 +43,6 @@
 
         // Disable scrolling
         document.body.style.overflow = 'hidden';
-
-        // Re-enable scrolling (if needed)
-        function enableScrolling() {
-          document.body.style.overflow = 'auto';
-        }
-
-        var canvas = document.getElementById('myCanvas');
-
-        // Disable touch scroll on the canvas
-        canvas.addEventListener('touchstart', function(event) {
-          event.preventDefault();
-        }, { passive: false });
-
-        canvas.addEventListener('touchmove', function(event) {
-          event.preventDefault();
-        }, { passive: false });
       </script> 
 </body>
 </html>
