@@ -10,8 +10,10 @@ async function fetchImages() {
 
     if (response.ok) {
       const text = await response.text();
+      console.log(text); // Log the raw response data
+
       const data = JSON.parse(text);
-      console.log(data); // Log the response data
+      console.log(data); // Log the parsed response data
 
       const images = data.resources;
 
