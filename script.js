@@ -1,28 +1,29 @@
-// Check if the current page is gallery.html before fetching images
-if (window.location.pathname.includes('gallery.html')) {
-    // Configure Cloudinary
-    const cloudName = 'duldfki6j';
-    const deliveryURL = `http://res.cloudinary.com/duldfki6j`;
-  
-    // Get the container element for the image grid
-    const imageGrid = document.getElementById('image-grid');
-  
-    // Fetch the image URLs from Cloudinary and create the image elements
-    fetch(`${deliveryURL}/image/list/sample.json`, { mode: 'cors' })
-      .then(response => response.json())
-      .then(data => {
-        data.resources.forEach(resource => {
-          const imageUrl = `${deliveryURL}/image/upload/${resource.public_id}.${resource.format}`;
-  
-          // Create an image element and set the source
-          const image = document.createElement('img');
-          image.src = imageUrl;
-  
-          // Append the image to the image grid container
-          imageGrid.appendChild(image);
-        });
-      })
-      .catch(error => {
-        console.error('Failed to fetch images:', error);
+// Configure Cloudinary
+const cloudName = 'duldfki6j';
+const galleryContainer = document.getElementById('image-grid');
+
+// Function to fetch images from Cloudinary and display them in the gallery
+async function fetchImages() {
+  try {
+    const response = await fetch(`https://api.cloudinary.com/v1_1/duldfki6j/resources/image`);
+
+    if (response.ok) {
+      const data = await response.json();
+      const images = data.resources;
+
+      // Generate HTML for each image and append it to the gallery container
+      images.forEach(image => {
+        const imgElement = document.createElement('img');
+        imgElement.src = image.secure_url;
+        galleryContainer.appendChild(imgElement);
       });
-  }  
+    } else {
+      console.error('Failed to fetch images:', response.status, response.statusText);
+    }
+  } catch (error) {
+    console.error('Failed to fetch images:', error);
+  }
+}
+
+// Fetch and display the images when the page is loaded
+window.addEventListener('load', fetchImages);
