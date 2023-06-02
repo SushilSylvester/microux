@@ -9,8 +9,9 @@ async function fetchImages() {
     const response = await fetch(`${proxyUrl}?api_key=${apiKey}`);
 
     if (response.ok) {
-      const data = await response.json();
+      const data = await response; // Remove .json()
       console.log(data); // Log the response data
+
       const images = data.resources;
 
       // Generate HTML for each image and append it to the gallery container
