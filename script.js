@@ -6,10 +6,10 @@ const uploadPreset = 'new-preset';
 const cl = cloudinary.Cloudinary.new({ cloud_name: cloudName, secure: true });
 
 // Set the delivery URL for accessing media files
-const deliveryURL = `https://res.cloudinary.com/${cloudName}`;
+const deliveryURL = `http://res.cloudinary.com/duldfki6j`;
 
 // Set the API base URL for making API requests
-const apiBaseURL = `https://api.cloudinary.com/v1_1/${cloudName}`;
+const apiBaseURL = `https://api.cloudinary.com/v1_1/duldfki6j`;
 
 // Get the container element for the image grid
 const imageGrid = document.getElementById('image-grid');
@@ -18,8 +18,9 @@ const imageGrid = document.getElementById('image-grid');
 cl.api.resources({ type: 'upload', max_results: 20 }, (error, result) => {
   if (error) {
     console.error('Failed to fetch images:', error);
-  } else if (result && result.resources) {
-    result.resources.forEach((resource) => {
+  } else {
+    const resources = result && result.resources ? result.resources : [];
+    resources.forEach((resource) => {
       const imageUrl = `${deliveryURL}/image/upload/${resource.public_id}.${resource.format}`;
 
       // Create an image element and set the source
@@ -29,8 +30,6 @@ cl.api.resources({ type: 'upload', max_results: 20 }, (error, result) => {
       // Append the image to the image grid container
       imageGrid.appendChild(image);
     });
-  } else {
-    console.error('Invalid response format:', result);
   }
 });
 
