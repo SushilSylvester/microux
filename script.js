@@ -8,27 +8,21 @@ async function fetchImages() {
   const galleryContainer = document.getElementById('image-grid');
 
   try {
-    const xhr = new XMLHttpRequest();
-    xhr.open('GET', `${proxyUrl}?api_key=${apiKey}`, true);
-    xhr.onload = function () {
-      if (xhr.status === 200) {
-        const data = JSON.parse(xhr.responseText);
-        const images = data.resources;
+    const response = await fetch(`${proxyUrl}?api_key=${apiKey}`);
 
-        // Generate HTML for each image and append it to the gallery container
-        images.forEach(image => {
-          const imgElement = document.createElement('img');
-          imgElement.src = image.secure_url;
-          galleryContainer.appendChild(imgElement);
-        });
-      } else {
-        console.error('Failed to fetch images:', xhr.status, xhr.statusText);
-      }
-    };
-    xhr.onerror = function () {
-      console.error('Failed to fetch images:', xhr.status, xhr.statusText);
-    };
-    xhr.send();
+    if (response.ok) {
+      const data = await response.json();
+      const images = data.resources;
+
+      // Generate HTML for each image and append it to the gallery container
+      images.forEach(image => {
+        const imgElement = document.createElement('img');
+        imgElement.src = image.secure_url;
+        galleryContainer.appendChild(imgElement);
+      });
+    } else {
+      console.error('Failed to fetch images:', response.status, response.statusText);
+    }
   } catch (error) {
     console.error('Failed to fetch images:', error);
   }
