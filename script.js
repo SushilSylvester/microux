@@ -9,12 +9,14 @@ async function fetchImages() {
     const response = await fetch(`${proxyUrl}?api_key=${apiKey}`);
 
     if (response.ok) {
-      const data = await response; // Remove .json()
+      const data = await response.json();
       console.log(data); // Log the response data
 
       const images = data.resources;
 
       // Generate HTML for each image and append it to the gallery container
+      const galleryContainer = document.getElementById('image-grid'); // Assuming the gallery container has the id "image-grid"
+      
       images.forEach(image => {
         const imgElement = document.createElement('img');
         imgElement.src = image.secure_url;
