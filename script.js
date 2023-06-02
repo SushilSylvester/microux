@@ -5,7 +5,7 @@ const galleryContainer = document.getElementById('image-grid');
 // Function to fetch images from Cloudinary and display them in the gallery
 async function fetchImages() {
   try {
-    const response = await fetch(`https://api.cloudinary.com/v1_1/duldfki6j/resources/image`);
+    const response = await fetch(`https://res.cloudinary.com/duldfki6j/image/list/sample.json`);
 
     if (response.ok) {
       const data = await response.json();
