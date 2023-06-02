@@ -10,8 +10,10 @@ const saveButton = document.getElementById('save-button');
 saveButton.addEventListener('click', saveImage);
 
 // Function to handle saving the image
-function saveImageToCloudinary(canvas) {
-    const htmlCanvas = canvas.elt;
+function saveImage() {
+    // Convert the p5.js canvas content to a data URL
+    const p5Canvas = window.defaultCanvas0;
+    const htmlCanvas = p5Canvas.elt;
     const imageData = htmlCanvas.toDataURL('image/png');
   
     // Upload the image to Cloudinary
@@ -22,5 +24,6 @@ function saveImageToCloudinary(canvas) {
       .catch(error => {
         console.error('Failed to save the image:', error);
       });
-}
+  }
+  
 
