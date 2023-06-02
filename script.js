@@ -8,7 +8,7 @@ if (window.location.pathname.includes('gallery.html')) {
     const imageGrid = document.getElementById('image-grid');
   
     // Fetch the image URLs from Cloudinary and create the image elements
-    fetch(`${deliveryURL}/image/list/sample.json`)
+    fetch(`${deliveryURL}/image/list/sample.json`, { mode: 'cors' })
       .then(response => response.json())
       .then(data => {
         data.resources.forEach(resource => {
