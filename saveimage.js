@@ -11,7 +11,7 @@ saveButton.addEventListener('click', saveImage);
 // Function to handle saving the image
 function saveImage() {
   // Convert the canvas content to a data URL
-  const canvas = document.getElementById('myCanvas');
+  const canvas = document.getElementById('defaultCanvas0');
   const imageData = canvas.toDataURL('image/png');
 
   // Upload the image to Cloudinary
