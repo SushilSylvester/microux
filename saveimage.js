@@ -1,5 +1,3 @@
-import { cloudinary } from './cloudinary-core/cloudinary-core.js';
-
 // Configure Cloudinary
 const cloudName = 'duldfki6j';
 const apiKey = '474577221937364';
