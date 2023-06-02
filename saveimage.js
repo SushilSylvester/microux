@@ -10,7 +10,7 @@ const saveButton = document.getElementById('save-button');
 saveButton.addEventListener('click', saveImage);
 
 // Function to handle saving the image
-function saveImage(canvas) {
+function saveImageToCloudinary(canvas) {
     const htmlCanvas = canvas.elt;
     const imageData = htmlCanvas.toDataURL('image/png');
   
@@ -22,5 +22,5 @@ function saveImage(canvas) {
       .catch(error => {
         console.error('Failed to save the image:', error);
       });
-  }
+}
 
