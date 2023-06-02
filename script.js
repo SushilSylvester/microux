@@ -6,7 +6,7 @@ const deliveryURL = `http://res.cloudinary.com/duldfki6j`;
 const imageGrid = document.getElementById('image-grid');
 
 // Fetch the image URLs from Cloudinary and create the image elements
-fetch(`${deliveryURL}/image/list/sample.json`)
+fetch(`${deliveryURL}/image/list/sample.json`, { mode: 'cors' })
   .then(response => response.json())
   .then(data => {
     if (data.error) {
