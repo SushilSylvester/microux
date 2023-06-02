@@ -18,8 +18,8 @@ const imageGrid = document.getElementById('image-grid');
 cl.api.resources({ type: 'upload', max_results: 20 }, (error, result) => {
   if (error) {
     console.error('Failed to fetch images:', error);
-  } else {
-    const resources = result && result.resources ? result.resources : [];
+  } else if (result && result.resources) {
+    const resources = result.resources;
     resources.forEach((resource) => {
       const imageUrl = `${deliveryURL}/image/upload/${resource.public_id}.${resource.format}`;
 
@@ -30,6 +30,8 @@ cl.api.resources({ type: 'upload', max_results: 20 }, (error, result) => {
       // Append the image to the image grid container
       imageGrid.appendChild(image);
     });
+  } else {
+    console.error('Invalid response format:', result);
   }
 });
 
@@ -40,7 +42,7 @@ saveButton.addEventListener('click', saveImage);
 // Function to handle saving the image
 function saveImage() {
   // Convert the p5.js canvas content to a data URL
-  const defaultCanvas0 = window.canvas; // Replace "canvas" with the variable storing your p5.js canvas
+  const canvas = window.canvas; // Replace "canvas" with the variable storing your p5.js canvas
   const imageData = canvas.elt.toDataURL('image/png');
 
   // Upload the image to Cloudinary
