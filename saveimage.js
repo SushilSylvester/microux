@@ -20,7 +20,7 @@ function saveImage() {
   const formData = new FormData();
   formData.append('file', imageData);
 
-  fetch('https://api.cloudinary.com/v1_1/your_cloud_name/upload', {
+  fetch('https://api.cloudinary.com/v1_1/duldfki6j/upload', {
     method: 'POST',
     body: formData
   })
