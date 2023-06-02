@@ -1,11 +1,12 @@
 // Configure Cloudinary
 const cloudName = 'duldfki6j';
+const apiKey = '474577221937364';
 const proxyUrl = 'https://connectloop.netlify.app/proxy.js'; // Update with the URL to your server-side proxy
 
 // Function to fetch images from Cloudinary and display them in the gallery
 async function fetchImages() {
   try {
-    const response = await fetch(proxyUrl);
+    const response = await fetch(`${proxyUrl}?api_key=${apiKey}`);
 
     if (response.ok) {
       const data = await response.json();
