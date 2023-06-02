@@ -27,5 +27,3 @@ cl.api.resources({ type: 'upload', max_results: 20 }, (error, result) => {
   }
 });
 
-
-\
