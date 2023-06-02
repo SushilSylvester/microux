@@ -41,7 +41,7 @@ saveButton.addEventListener('click', saveImage);
 // Function to handle saving the image
 function saveImage() {
   // Convert the p5.js canvas content to a data URL
-  const canvas = window.canvas; // Replace "canvas" with the variable storing your p5.js canvas
+  const defaultCanvas0 = window.canvas; // Replace "canvas" with the variable storing your p5.js canvas
   const imageData = canvas.elt.toDataURL('image/png');
 
   // Upload the image to Cloudinary
