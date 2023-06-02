@@ -1,4 +1,4 @@
-import cloudinary from './cloudinary-core.js';
+import cloudinary from './cloudinary-core/cloudinary-core.js';
 
 // Configure Cloudinary
 const cloudName = 'duldfki6j';
@@ -27,4 +27,3 @@ cl.api.resources({ type: 'upload', max_results: 20 }, (error, result) => {
   }
 });
 
-node_modules/cloudinary-core/cloudinary-core.js
