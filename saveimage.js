@@ -1,4 +1,4 @@
-import cloudinary from './node_modules/cloudinary-core/cloudinary-core.js';
+import cloudinary from 'cloudinary-core.js';
 
 // Configure Cloudinary
 const cloudName = 'duldfki6j';
