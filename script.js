@@ -9,7 +9,8 @@ async function fetchImages() {
     const response = await fetch(`${proxyUrl}?api_key=${apiKey}`);
 
     if (response.ok) {
-      const data = await response.json();
+      const text = await response.text();
+      const data = JSON.parse(text);
       console.log(data); // Log the response data
 
       const images = data.resources;
