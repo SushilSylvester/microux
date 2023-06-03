@@ -6,10 +6,10 @@ const apiSecret = 'NdmEurAKxUGT-W_wuS7OhoYdi8k';
 
 // Function to fetch images from Cloudinary and display them in the gallery
 async function fetchImages() {
-  const { Cloudinary } = Cloudinary.createCloudinary({ cloud_name: cloudName, secure: true });
+  const cloudinary = new cloudinary.Cloudinary({ cloud_name: cloudName, secure: true });
 
   try {
-    const { resources } = await Cloudinary.api.resources({ type: 'upload' });
+    const { resources } = await cloudinary.api.resources({ type: 'upload' });
 
     const imageGrid = document.getElementById('image-grid');
 
