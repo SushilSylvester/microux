@@ -1,13 +1,12 @@
 // Configure Cloudinary
-const cloudName = 'duldfki6j'; // Replace with your Cloudinary cloud name
-const apiKey = '474577221937364'; // Replace with your Cloudinary API key
+const proxyUrl = 'proxy.php'; // Replace with the path to your proxy.php file
 
 // Function to fetch images from Cloudinary and display them in the gallery
 async function fetchImages() {
   const galleryContainer = document.getElementById('image-grid');
 
   try {
-    const response = await fetch(`https://api.cloudinary.com/v1_1/${cloudName}/resources/image`);
+    const response = await fetch(proxyUrl);
 
     if (response.ok) {
       const data = await response.json();
