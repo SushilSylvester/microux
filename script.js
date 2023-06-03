@@ -6,7 +6,7 @@ const apiSecret = 'NdmEurAKxUGT-W_wuS7OhoYdi8k';
 
 // Function to fetch images from Cloudinary and display them in the gallery
 async function fetchImages() {
-  const cloudinary = new cloudinary.Cloudinary({ cloud_name: cloudName, secure: true });
+  const cloudinary = new Cloudinary({ cloud_name: cloudName, secure: true });
 
   try {
     const { resources } = await cloudinary.api.resources({ type: 'upload' });
