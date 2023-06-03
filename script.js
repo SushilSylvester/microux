@@ -1,5 +1,5 @@
 // Configure Cloudinary
-const proxyUrl = 'proxy.php'; // Replace with the path to your proxy.php file
+const proxyUrl = 'https://connectloop.netlify.app/proxy.php'; // Replace with the path to your proxy.php file
 
 // Function to fetch images from Cloudinary and display them in the gallery
 async function fetchImages() {
