@@ -14,7 +14,7 @@ cloudinary.v2.api.resources(
       return;
     }
 
-    const imageGrid = document.getElementById('imageGrid');
+    const imageGrid = document.getElementById('image-grid');
 
     // Iterate through each image in the list
     result.resources.forEach(image => {
