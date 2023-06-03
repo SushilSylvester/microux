@@ -4,13 +4,14 @@ const apiKey = '474577221937364';
 const apiSecret = 'NdmEurAKxUGT-W_wuS7OhoYdi8k';
 //const proxyUrl = 'https://connectloop.netlify.app/proxy.js'; // Update with the URL to your server-side proxy
 
+
 // Function to initialize the Cloudinary SDK and fetch image list
 function fetchImages() {
-  cloudinary.cloudinary_js.config({
+  const config = cloudinary.config({
     cloud_name: cloudName
   });
 
-  cloudinary.cloudinary_js.v2.api.resources(
+  cloudinary.v2.api.resources(
     { type: 'upload', prefix: 'your-prefix-if-any/', max_results: 100 },
     (error, result) => {
       if (error) {
@@ -23,7 +24,8 @@ function fetchImages() {
       // Iterate through each image in the list
       result.resources.forEach(image => {
         // Generate the URL for the image using the Transformation API
-        const imageUrl = cloudinary.cloudinary_js.url(image.public_id, {
+        const imageUrl = cloudinary.url(image.public_id, {
+          cloud_name: cloudName,
           width: 300,
           height: 300,
           crop: 'fill'
