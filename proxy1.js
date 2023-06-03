@@ -12,7 +12,7 @@ app.get('/api/images', (req, res) => {
     .then(response => response.json())
     .then(data => {
       res.setHeader('Content-Type', 'application/json');
-      res.send(data);
+      res.send(JSON.stringify(data));
     })
     .catch(error => {
       console.log('Error:', error);
