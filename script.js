@@ -1,13 +1,9 @@
-// Configure Cloudinary
-const cloudName = 'duldfki6j';
-const apiKey = '474577221937364';
-const apiSecret = 'NdmEurAKxUGT-W_wuS7OhoYdi8k';
-//const proxyUrl = 'https://connectloop.netlify.app/proxy.js'; // Update with the URL to your server-side proxy
-
+// Replace 'https://connectloop.netlify.app/proxy.php' with the URL to your server-side proxy
+const proxyUrl = 'https://connectloop.netlify.app/proxy.php';
 
 // Function to fetch image list
 function fetchImages() {
-  const url = `https://api.cloudinary.com/v1_1/${cloudName}/resources/image/upload`;
+  const url = `${proxyUrl}?cloudName=YOUR_CLOUD_NAME`;
 
   fetch(url)
     .then(response => response.json())
