@@ -6,7 +6,7 @@ const proxyUrl = 'https://connectloop.netlify.app/proxy.js'; // Update with the 
 
 // Function to fetch images from Cloudinary and display them in the gallery
 async function fetchImages() {
-  const { Cloudinary } = cloudinary.createCloudinary({ cloud_name: cloudName, secure: true });
+  const { Cloudinary } = Cloudinary.createCloudinary({ cloud_name: cloudName, secure: true });
 
   try {
     const { resources } = await Cloudinary.api.resources({ type: 'upload' });
