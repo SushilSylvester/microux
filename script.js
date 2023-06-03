@@ -7,7 +7,7 @@ const apiSecret = 'NdmEurAKxUGT-W_wuS7OhoYdi8k';
 
 // Function to fetch image list
 function fetchImages() {
-  const url = `https://res.cloudinary.com/${cloudName}/image/upload/all.json`;
+  const url = `https://res.cloudinary.com/${cloudName}/image/upload/<public_id>.json`;
 
   fetch(url)
     .then(response => response.json())
