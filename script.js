@@ -3,7 +3,8 @@ const proxyUrl = 'https://connectloop.netlify.app/proxy.php';
 
 // Function to fetch image list
 function fetchImages() {
-  const url = `${proxyUrl}?cloudName=YOUR_CLOUD_NAME`;
+  const cloudName = 'duldfki6j'; // Replace with your Cloudinary cloud name
+  const url = `${proxyUrl}?cloudName=${cloudName}`;
 
   fetch(url)
     .then(response => response.json())
