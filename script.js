@@ -7,7 +7,7 @@ const apiSecret = 'NdmEurAKxUGT-W_wuS7OhoYdi8k';
 
 // Function to fetch image list
 function fetchImages() {
-  const url = `https://res.cloudinary.com/${cloudName}/image/upload/ticket.json`;
+  const url = `https://res.cloudinary.com/duldfki6j/image/upload/v1685661986/uptur5oszsvsmpno2dvq.png`;
 
   fetch(url)
     .then(response => response.json())
