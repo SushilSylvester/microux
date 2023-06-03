@@ -2,6 +2,10 @@
 <html>
 <head>
   <title>Image Gallery</title>
+  <script src="https://unpkg.com/cloudinary-core@2.9.0/cloudinary-core-shrinkwrap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+  <script src="https://widget.cloudinary.com/v2.0/global/all.js" type="text/javascript"></script>
+
   <style>
     .image-grid {
       display: grid;
@@ -17,6 +21,40 @@
 </head>
 <body>
   <div class="image-grid" id="image-grid"></div>
-  <script src="script.js"></script>
+
+  <script>
+    // Configure Cloudinary
+    const cloudName = 'duldfki6j'; // Replace with your Cloudinary cloud name
+
+    // Function to initialize the Cloudinary Media Library widget and fetch image list
+    function fetchImages() {
+      const imageGrid = document.getElementById('image-grid');
+
+      cloudinary.openMediaLibrary(
+        {
+          cloud_name: cloudName,
+          inline_container: '#image-grid',
+          multiple: true,
+          max_files: 100
+        },
+        {
+          insertHandler: function (data) {
+            // Insert the selected images into the grid
+            data.assets.forEach(asset => {
+              const imageUrl = asset.secure_url;
+
+              const img = document.createElement('img');
+              img.src = imageUrl;
+
+              imageGrid.appendChild(img);
+            });
+          }
+        }
+      );
+    }
+
+    // Call the function to fetch images when the page loads
+    window.addEventListener('DOMContentLoaded', fetchImages);
+  </script>
 </body>
 </html>
