@@ -6,24 +6,17 @@ const proxyUrl = 'https://connectloop.netlify.app/proxy.js'; // Update with the 
 // Function to fetch images from Cloudinary and display them in the gallery
 async function fetchImages() {
   try {
-    const response = await fetch(`${proxyUrl}?api_key=${apiKey}`, {
-      headers: {
-        'Content-Type': 'application/json',
-        'Authorization': `Bearer ${apiKey}`
-      },
-      mode: 'cors'
-    });
+    const response = await fetch(`${proxyUrl}?api_key=${apiKey}`);
 
     if (response.ok) {
       const data = await response.json();
-      console.log(data); // Log the response data
-      const images = data.resources;
+      const imageGrid = document.getElementById('image-grid'); // Find the image-grid container
 
-      // Generate HTML for each image and append it to the gallery container
-      images.forEach(image => {
-        const imgElement = document.createElement('img');
-        imgElement.src = image.secure_url;
-        galleryContainer.appendChild(imgElement);
+      data.resources.forEach((resource) => {
+        const imageUrl = resource.url;
+        const image = document.createElement('img');
+        image.src = imageUrl;
+        imageGrid.appendChild(image); // Append the image to the image-grid container
       });
     } else {
       console.error('Failed to fetch images:', response.status, response.statusText);
