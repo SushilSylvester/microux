@@ -3,10 +3,14 @@ const cloudName = 'duldfki6j';
 
 // Function to fetch images from Cloudinary and display them in the gallery
 async function fetchImages() {
-  const galleryContainer = document.getElementById('image-grid');
-
   try {
-    const response = await fetch(`https://api.cloudinary.com/v1_1/${cloudName}/resources/image`);
+    const response = await fetch(`${proxyUrl}?api_key=${474577221937364}`, {
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${474577221937364}`
+      },
+      mode: 'cors'
+    });
 
     if (response.ok) {
       const data = await response.json();
@@ -26,6 +30,7 @@ async function fetchImages() {
     console.error('Failed to fetch images:', error);
   }
 }
+
 
 // Fetch and display the images when the page is loaded
 window.addEventListener('load', fetchImages);
