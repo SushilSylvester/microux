@@ -7,7 +7,7 @@ const apiSecret = 'NdmEurAKxUGT-W_wuS7OhoYdi8k';
 
 // Function to fetch image list
 function fetchImages() {
-  const url = `https://res.cloudinary.com/${cloudName}/image/upload/<public_id>.json`;
+  const url = `https://api.cloudinary.com/v1_1/${cloudName}/resources/image/upload`;
 
   fetch(url)
     .then(response => response.json())
@@ -17,7 +17,7 @@ function fetchImages() {
       // Iterate through each image in the list
       data.resources.forEach(image => {
         // Generate the URL for the image
-        const imageUrl = `https://res.cloudinary.com/${cloudName}/image/upload/${image.public_id}.${image.format}`;
+        const imageUrl = image.secure_url;
 
         // Create an <img> element for each image
         const img = document.createElement('img');
