@@ -5,7 +5,7 @@ const apiSecret = 'NdmEurAKxUGT-W_wuS7OhoYdi8k';
 //const proxyUrl = 'https://connectloop.netlify.app/proxy.js'; // Update with the URL to your server-side proxy
 
 // Replace 'YOUR_CLOUD_NAME' with your Cloudinary cloud name
-const url = `https://res.cloudinary.com/${cloudName}/image/list/demo.json`;
+const url = `https://res.cloudinary.com/${cloudName}/image/list/all.json`;
 
 // Fetch image list from Cloudinary
 fetch(url)
