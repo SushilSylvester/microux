@@ -21,6 +21,36 @@
 </head>
 <body>
   <div class="image-grid" id="image-grid"></div>
-  <script type="module" src="script.js"></script>
+
+  <script>
+    const imageGrid = document.getElementById('image-grid');
+    
+    // Initialize Cloudinary widget
+    const widget = cloudinary.createUploadWidget(
+      {
+        cloudName: 'duldfki6j', // Replace with your Cloudinary cloud name
+        uploadPreset: 'ner-preset', // Replace with your upload preset name
+      },
+      (error, result) => {
+        if (!error && result && result.event === 'success') {
+          // Image uploaded successfully
+          const imageUrl = result.info.secure_url;
+
+          // Create an <img> element for the uploaded image
+          const img = document.createElement('img');
+          img.src = imageUrl;
+
+          // Append the image to the grid container
+          imageGrid.appendChild(img);
+        }
+      }
+    );
+
+    // Open the widget when a button is clicked
+    const openWidgetButton = document.getElementById('open-widget-button');
+    openWidgetButton.addEventListener('click', () => {
+      widget.open();
+    });
+  </script>
 </body>
 </html>
