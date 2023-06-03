@@ -26,21 +26,35 @@
     // Configure Cloudinary
     const cloudName = 'duldfki6j'; // Replace with your Cloudinary cloud name
 
-    // Function to initialize the Cloudinary Gallery widget
-    function initGallery() {
-      const gallery = cloudinary.galleryWidget({
-        container: '#image-grid',
-        cloudName: cloudName,
-        resourceType: 'image',
-        tags: 'ticket', // Replace with the desired tags for your gallery
-      });
+    // Function to fetch image list
+    function fetchImages() {
+      const url = `https://api.cloudinary.com/v1_1/${cloudName}/resources/image/upload`;
 
-      // Load the gallery
-      gallery.render();
+      fetch(url)
+        .then(response => response.json())
+        .then(data => {
+          const imageGrid = document.getElementById('image-grid');
+
+          // Iterate through each image in the list
+          data.resources.forEach(image => {
+            // Generate the URL for the image
+            const imageUrl = image.secure_url;
+
+            // Create an <img> element for each image
+            const img = document.createElement('img');
+            img.src = imageUrl;
+
+            // Append the image to the grid container
+            imageGrid.appendChild(img);
+          });
+        })
+        .catch(error => {
+          console.log('Error:', error);
+        });
     }
 
-    // Call the function to initialize the Gallery widget when the page loads
-    window.addEventListener('DOMContentLoaded', initGallery);
+    // Call the function to fetch images when the page loads
+    window.addEventListener('DOMContentLoaded', fetchImages);
   </script>
 </body>
 </html>
