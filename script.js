@@ -1,26 +1,24 @@
 // Configure Cloudinary
 const cloudName = 'duldfki6j';
 const apiKey = '474577221937364';
+const apiSecret = 'NdmEurAKxUGT-W_wuS7OhoYdi8k';
 const proxyUrl = 'https://connectloop.netlify.app/proxy.js'; // Update with the URL to your server-side proxy
 
 // Function to fetch images from Cloudinary and display them in the gallery
 async function fetchImages() {
+  const cloudinary = new Cloudinary({ cloud_name: cloudName, secure: true });
+
   try {
-    const response = await fetch(`${proxyUrl}?api_key=${apiKey}`);
+    const { resources } = await cloudinary.api.resources({ type: 'upload' });
 
-    if (response.ok) {
-      const data = await response.json();
-      const imageGrid = document.getElementById('image-grid'); // Find the image-grid container
+    const imageGrid = document.getElementById('image-grid');
 
-      data.resources.forEach((resource) => {
-        const imageUrl = resource.url;
-        const image = document.createElement('img');
-        image.src = imageUrl;
-        imageGrid.appendChild(image); // Append the image to the image-grid container
-      });
-    } else {
-      console.error('Failed to fetch images:', response.status, response.statusText);
-    }
+    resources.forEach((resource) => {
+      const imageUrl = resource.secure_url;
+      const image = document.createElement('img');
+      image.src = imageUrl;
+      imageGrid.appendChild(image);
+    });
   } catch (error) {
     console.error('Failed to fetch images:', error);
   }
