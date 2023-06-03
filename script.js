@@ -2,7 +2,7 @@
 const cloudName = 'duldfki6j';
 const apiKey = '474577221937364';
 const apiSecret = 'NdmEurAKxUGT-W_wuS7OhoYdi8k';
-const proxyUrl = 'https://connectloop.netlify.app/proxy.js'; // Update with the URL to your server-side proxy
+//const proxyUrl = 'https://connectloop.netlify.app/proxy.js'; // Update with the URL to your server-side proxy
 
 // Function to fetch images from Cloudinary and display them in the gallery
 async function fetchImages() {
