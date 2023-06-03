@@ -26,35 +26,24 @@
     // Configure Cloudinary
     const cloudName = 'duldfki6j'; // Replace with your Cloudinary cloud name
 
-    // Function to initialize the Cloudinary Media Library widget
-    function initMediaLibrary() {
-      const mediaLibrary = cloudinary.createMediaLibrary({
-        cloud_name: cloudName,
-        api_key: '474577221937364', // Replace with your Cloudinary API key
-        insertHandler: function (data) {
-          const imageGrid = document.getElementById('image-grid');
-
-          // Iterate through each selected asset
-          data.assets.forEach(asset => {
-            // Generate the URL for the image
-            const imageUrl = asset.url;
-
-            // Create an <img> element for each image
-            const img = document.createElement('img');
-            img.src = imageUrl;
-
-            // Append the image to the grid container
-            imageGrid.appendChild(img);
-          });
-        }
+    // Function to initialize the Cloudinary Gallery widget
+    function initGallery() {
+      const gallery = cloudinary.galleryWidget({
+        container: '#image-grid',
+        cloudName: cloudName,
+        resourceType: 'image',
+        tags: 'ticket', // Replace with the desired tags for your gallery
+        plugins: [
+          cloudinary.galleryWidget.CloudinaryInlinePlayer()
+        ]
       });
 
-      // Open the Media Library widget
-      mediaLibrary.show({ multiple: true });
+      // Load the gallery
+      gallery.render();
     }
 
-    // Call the function to open the Media Library widget when the page loads
-    window.addEventListener('DOMContentLoaded', initMediaLibrary);
+    // Call the function to initialize the Gallery widget when the page loads
+    window.addEventListener('DOMContentLoaded', initGallery);
   </script>
 </body>
 </html>
