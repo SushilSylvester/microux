@@ -1,23 +1,16 @@
 // Configure Cloudinary
-const proxyUrl = 'https://connectloop.netlify.app/proxy.php'; // Replace with the path to your proxy.php file
-
-// Configure Cloudinary
-const proxyUrl = 'path-to-proxy.php'; // Replace with the path to your proxy.php file
+const cloudName = 'duldfki6j';
 
 // Function to fetch images from Cloudinary and display them in the gallery
 async function fetchImages() {
   const galleryContainer = document.getElementById('image-grid');
 
   try {
-    const response = await fetch(proxyUrl);
+    const response = await fetch(`https://api.cloudinary.com/v1_1/${cloudName}/resources/image`);
 
     if (response.ok) {
-      const text = await response.text();
-      console.log(text); // Log the raw response data
-
-      const data = JSON.parse(text);
-      console.log(data); // Log the parsed response data
-
+      const data = await response.json();
+      console.log(data); // Log the response data
       const images = data.resources;
 
       // Generate HTML for each image and append it to the gallery container
