@@ -1,6 +1,9 @@
 // Configure Cloudinary
 const proxyUrl = 'https://connectloop.netlify.app/proxy.php'; // Replace with the path to your proxy.php file
 
+// Configure Cloudinary
+const proxyUrl = 'path-to-proxy.php'; // Replace with the path to your proxy.php file
+
 // Function to fetch images from Cloudinary and display them in the gallery
 async function fetchImages() {
   const galleryContainer = document.getElementById('image-grid');
@@ -9,7 +12,12 @@ async function fetchImages() {
     const response = await fetch(proxyUrl);
 
     if (response.ok) {
-      const data = await response.json();
+      const text = await response.text();
+      console.log(text); // Log the raw response data
+
+      const data = JSON.parse(text);
+      console.log(data); // Log the parsed response data
+
       const images = data.resources;
 
       // Generate HTML for each image and append it to the gallery container
