@@ -3,116 +3,77 @@
 <head>
   <title>Connect Loop</title>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.0/p5.js"></script>
-  <script src="https://widget.cloudinary.com/v2.0/global/all.js" type="text/javascript"></script>
-  <script src="https://unpkg.com/cloudinary-core@2.9.0/cloudinary-core-shrinkwrap.min.js"></script>
   <style>
+    @font-face {
+      font-family: 'diatype';
+      src: url('fonts/abc-diatype-regular.woff') format('woff');
+      /* Add more src lines if you have different font file formats */
+    }
+    
     body {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      margin: 0;
+      margin-top: 80px;
+      margin-right: 80px;
+      margin-left: 80px; 
       overflow: hidden;
-      background-color: #FFFFFF;
+      background-image: url(https://freight.cargo.site/t/original/i/8865ce1e2e4dfc3a8668c94789e52028ae7f9f7e711552735e88f8f372dcaf48/background.png);
+      background-size: cover;
+      background-repeat: no-repeat;
+      background-position: center center;
     }
 
-    canvas {
-      border: 1px solid rgb(27, 27, 27);
-      border-radius: 10px;
+    h1{
+      font-family: diatype, sans-serif;
+      font-size:66px ;
     }
 
-    .button-container {
-      margin-top: 10px;
+    h2{
+      font-family: diatype, sans-serif;
+      font-size:32px ;
     }
 
-    .button {
-      padding: 8px 16px;
-      margin-right: 8px;
-      background-color: #FAF9FB;
-      color: #3d3d3d;
+    iframe {
+      width: 100%;
+      height: 100vh;
       border: none;
-      font-size: 14px;
-      cursor: pointer;
     }
 
-    .button:hover {
-      background-color: #3d3d3d;
-      color: #FAF9FB;
+    .grid-container {
+      display: grid;
+      grid-template-columns: 1fr 1fr; /* Two columns with equal width */
+      grid-gap: 20px; /* Gap between columns */
     }
-
-    .button:active {
-      transform: scale(0.95);
+    
+    .left-column {
+      grid-column: 1; /* Place the element in the first column */
     }
+    
+    .right-column {
+      grid-column: 2; /* Place the element in the second column */
+    }
+    
   </style>
 </head>
 <body>
-  <script>
-    let isDrawing = true;
-    let eraserSize = 30;
-    
-
-    function setup() {
-      let canvas = createCanvas(710, 400);
-      canvas.parent('canvas-container');
-      background(255);
-    }
-
-    function draw() {
-     // Calculate line spacing and text width
-      let lineSpacing = height / 6;
-      let textWidth = width - 20;
-
-      // Draw five horizontal lines
-      stroke(0);
-      for (let i = 0; i < 5; i++) {
-        let y = lineSpacing * (i + 1);
-        line(10, y, width - 10, y);
-      }
-
-      // Draw text in the top left corner
-      
-     
-
-      if (isDrawing) {
-        stroke(0);
-        strokeWeight(1);
-        if (mouseIsPressed === true) {
-          line(mouseX, mouseY, pmouseX, pmouseY);
-        }
-      } else {
-        stroke(255);
-        strokeWeight(eraserSize);
-        if (mouseIsPressed === true) {
-          line(mouseX, mouseY, pmouseX, pmouseY);
-        }
-      }
-    }
-
-    function activatePencil() {
-      isDrawing = true;
-    }
-
-    function activateEraser() {
-      isDrawing = false;
-    }
-
-    function clearCanvas() {
-      background(255);
-    }
-
-    // Disable scrolling
-    document.body.style.overflow = 'hidden';
-  </script>
-
-  <div id="canvas-container"></div>
-
-  <div class="button-container">
-    <button class="button" onclick="activatePencil()">Pencil</button>
-    <button class="button" onclick="activateEraser()">Eraser</button>
-    <button class="button" onclick="clearCanvas()">Clear Canvas</button>
-    <button class="button" id="save-button">Save Image</button>
+  <div class="grid-container">
+    <div class="left-column">
+      <h1>Share your appreciation</h1>
+    </div>
+    <div class="right-column">
+      <img src="https://files.cargocollective.com/c1621550/smalllogo.svg" alt="Image" class="" style="float:right;">
+    </div>
   </div>
-<script src="https://files.cargocollective.com/c1621550/saveimage.js"></script>
+
+
+  <div class="grid-container">
+    <div class="left-column">
+      <h2 style="margin-top:0px;">Write down your appreciation note below</h2>
+    </div>
+    <div class="right-column">
+      
+    </div>
+  </div>
+
+  <iframe src="canvas.html"></iframe>
+
 </body>
 </html>
-

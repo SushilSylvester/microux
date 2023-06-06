@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.0/p5.js"></script>
+  <style>
+    body {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      margin: 0;
+      overflow: hidden;
+      
+    }
+
+    canvas {
+        margin-top: 50px;
+      border: 1px solid rgb(27, 27, 27);
+      border-radius: 10px;
+    }
+
+    .button-container {
+      margin-top: 10px;
+    }
+
+    .button {
+      padding: 8px 16px;
+      margin-right: 8px;
+      background-color: #FAF9FB;
+      color: #3d3d3d;
+      border: none;
+      font-size: 14px;
+      cursor: pointer;
+    }
+
+    .button:hover {
+      background-color: #3d3d3d;
+      color: #FAF9FB;
+    }
+
+    .button:active {
+      transform: scale(0.95);
+    }
+  </style>
+</head>
+<body>
+  <script>
+    let isDrawing = true;
+    let eraserSize = 10;
+
+    function setup() {
+      let canvas = createCanvas(710, 400);
+      canvas.parent('canvas-container');
+      background(255);
+    }
+
+    function draw() {
+      // Calculate line spacing and text width
+      let lineSpacing = height / 6;
+      let textWidth = width - 20;
+
+      // Draw five horizontal lines
+      stroke(0);
+      for (let i = 0; i < 5; i++) {
+        let y = lineSpacing * (i + 1);
+        line(10, y, width - 10, y);
+      }
+
+      if (isDrawing) {
+        stroke(0);
+        strokeWeight(1);
+        if (mouseIsPressed === true) {
+          line(mouseX, mouseY, pmouseX, pmouseY);
+        }
+      } else {
+        stroke(255);
+        strokeWeight(eraserSize);
+        if (mouseIsPressed === true) {
+          line(mouseX, mouseY, pmouseX, pmouseY);
+        }
+      }
+    }
+
+    function activatePencil() {
+      isDrawing = true;
+    }
+
+    function activateEraser() {
+      isDrawing = false;
+    }
+
+    function clearCanvas() {
+      background(255);
+    }
+  </script>
+
+  <div id="canvas-container"></div>
+
+  <div class="button-container">
+    <button class="button" onclick="activatePencil()">Pencil</button>
+    <!-- <button class="button" onclick="activateEraser()">Eraser</button> -->
+    <button class="button" onclick="clearCanvas()">Clear Canvas</button>
+    <button class="button" id="save-button">Save Image</button>
+  </div>
+
+  <script src="https://files.cargocollective.com/c1621550/saveimage.js"></script>
+</body>
+</html>
