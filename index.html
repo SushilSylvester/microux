@@ -5,6 +5,12 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.0/p5.js"></script>
   <style>
     @font-face {
+      font-family: 'diatype-light';
+      src: url('fonts/abc-diatype-light.woff') format('woff');
+      /* Add more src lines if you have different font file formats */
+    }
+
+    @font-face {
       font-family: 'diatype';
       src: url('fonts/abc-diatype-regular.woff') format('woff');
       /* Add more src lines if you have different font file formats */
@@ -22,13 +28,15 @@
     }
 
     h1{
-      font-family: diatype, sans-serif;
+      font-family: diatype-light, sans-serif;
       font-size:66px ;
+      color:#1a2426;
     }
 
     h2{
-      font-family: diatype, sans-serif;
+      font-family: diatype-light, sans-serif;
       font-size:32px ;
+      color:#1a2426;
     }
 
     iframe {
@@ -56,7 +64,7 @@
 <body>
   <div class="grid-container">
     <div class="left-column">
-      <h1>Share your appreciation</h1>
+      <h1>Share your <span style="color:#D12835;">appreciation</span></h1>
     </div>
     <div class="right-column">
       <img src="https://files.cargocollective.com/c1621550/smalllogo.svg" alt="Image" class="" style="float:right;">
