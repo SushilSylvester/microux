@@ -5,52 +5,82 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.0/p5.js"></script>
   <script src="https://widget.cloudinary.com/v2.0/global/all.js" type="text/javascript"></script>
   <script src="https://unpkg.com/cloudinary-core@2.9.0/cloudinary-core-shrinkwrap.min.js"></script>
-  <script type="module" src="saveimage.js"></script>
   <style>
     body {
       display: flex;
       flex-direction: column;
       align-items: center;
-     
+      justify-content: center;
       margin: 0;
       overflow: hidden;
+      background-color: #FFFFFF;
     }
 
     canvas {
-      border: 1px solid rgb(187, 67, 67);
+      border: 1px solid rgb(27, 27, 27);
+      border-radius: 10px;
     }
 
     .button-container {
       margin-top: 10px;
     }
+
+    .button {
+      padding: 8px 16px;
+      margin-right: 8px;
+      background-color: #FAF9FB;
+      color: #3d3d3d;
+      border: none;
+      font-size: 14px;
+      cursor: pointer;
+    }
+
+    .button:hover {
+      background-color: #3d3d3d;
+      color: #FAF9FB;
+    }
+
+    .button:active {
+      transform: scale(0.95);
+    }
   </style>
 </head>
 <body>
-  <div class="button-container">
-    <button onclick="activatePencil()">Pencil</button>
-    <button onclick="activateEraser()">Eraser</button>
-    <button onclick="clearCanvas()">Clear Canvas</button>
-    <button id="save-button">Save Image</button>
-  </div>
-
   <script>
     let isDrawing = true;
     let eraserSize = 30;
+    
 
     function setup() {
-      createCanvas(710, 400);
-      background(102);
+      let canvas = createCanvas(710, 400);
+      canvas.parent('canvas-container');
+      background(255);
     }
 
     function draw() {
+     // Calculate line spacing and text width
+      let lineSpacing = height / 6;
+      let textWidth = width - 20;
+
+      // Draw five horizontal lines
+      stroke(0);
+      for (let i = 0; i < 5; i++) {
+        let y = lineSpacing * (i + 1);
+        line(10, y, width - 10, y);
+      }
+
+      // Draw text in the top left corner
+      
+     
+
       if (isDrawing) {
-        stroke(255);
+        stroke(0);
         strokeWeight(1);
         if (mouseIsPressed === true) {
           line(mouseX, mouseY, pmouseX, pmouseY);
         }
       } else {
-        stroke(102);
+        stroke(255);
         strokeWeight(eraserSize);
         if (mouseIsPressed === true) {
           line(mouseX, mouseY, pmouseX, pmouseY);
@@ -67,12 +97,22 @@
     }
 
     function clearCanvas() {
-      background(102);
+      background(255);
     }
 
     // Disable scrolling
     document.body.style.overflow = 'hidden';
   </script>
-  <script src="saveimage.js"></script>
+
+  <div id="canvas-container"></div>
+
+  <div class="button-container">
+    <button class="button" onclick="activatePencil()">Pencil</button>
+    <button class="button" onclick="activateEraser()">Eraser</button>
+    <button class="button" onclick="clearCanvas()">Clear Canvas</button>
+    <button class="button" id="save-button">Save Image</button>
+  </div>
+<script src="https://files.cargocollective.com/c1621550/saveimage.js"></script>
 </body>
 </html>
+
